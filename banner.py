@@ -3,8 +3,8 @@ import pexpect
 
 def banner(ip):
     child = pexpect.spawn('telnet %s' % ip)
-    index = child.expect (['ame', 'nter','ccount',':',pexpect.TIMEOUT,pexpect.EOF],timeout=3) 
-    if index > 3 :  
+    index = child.expect (['ame', 'nter','ccount',pexpect.TIMEOUT,pexpect.EOF],timeout=3) 
+    if index > 2 :  
         print ip + ":" +"someting is wrong"
     else:
         ip=str(ip)
