@@ -20,5 +20,5 @@ def telnet(ip,user,pwd):
 	
 host = "192.168.30.1"
 user = "admin"
-pwd = "haizhinvshen"
+pwd = "admin"
 telnet(host,user,pwd)
