@@ -3,21 +3,25 @@ import threading
 import pexpect
 
 def telnet(ip,user,pwd):
-    child = pexpect.spawn('telnet %s' % ip)
-    index = child.expect (['ame', 'nter','ccount',':',pexpect.TIMEOUT,pexpect.EOF],timeout=8) 
-    if index > 3 :  
-        print "someting is wrong" 
-    child.sendline (user)  
-    child.expect ('ass')
-    child.sendline(pwd)
-    index = child.expect (['#'])
+    try:
+        child = pexpect.spawn('telnet %s' % ip)
+        index = child.expect (['ame','nter','ccount','ogin',pexpect.TIMEOUT,pexpect.EOF],timeout=5) 
+        if index > 3 :  
+            pass
+        else:
+            child.sendline (user)  
+            child.expect (['ass',pexpect.TIMEOUT,pexpect.EOF],timeout=5)
+            child.sendline(pwd)
+            index = child.expect (r'[>$~/]')
     #print index
     #print child.before
-    if index == 0:
-        print ip + ":" + user +":" + pwd + ":" "success"
-        os.system("echo %s >>aaa.txt " %(ip) )
-    else:
-        print "false"
+            if index == 0:
+                print ip + ":" + user +":" + pwd + ":" "success"
+                os.system("echo %s >>aaa.txt " %(ip) )
+            else:
+                pass
+    except:
+        pass
     return 1;
 
 def userpwd(ips,user,pwd):
@@ -62,7 +66,3 @@ if __name__ == "__main__":
         userpwd(ips,usertotal,pwdtotal)
         #print ips,usertotal,pwdtotal
         del hosttotal[:thread_number]
-
-        
-        
-
