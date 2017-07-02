@@ -1,5 +1,7 @@
 import re,sys,os
 import pexpect
+import threading
+import time
 
 def banner(ip):
     child = pexpect.spawn('telnet %s' % ip)
@@ -15,4 +17,5 @@ def banner(ip):
 host = open('host.txt')
 for line in host:
     ip = line.strip('\n')
-    banner(ip)
+    t=threading.Thread(target=banner,args=(ip,))
+    t.start()
