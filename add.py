@@ -20,7 +20,7 @@ def telnet(ip,user,pwd):
 #print child.before
                 if index == 0:
                     print ip + ":" + user +":" + pwd + ":" "success"
-                    os.system("echo %s >>aaa.txt " %(ip) )
+                    os.system("echo %s,%s,%s  >>aaa.txt " %(ip,user,pwd) )
                 else:
                     pass
     except:
