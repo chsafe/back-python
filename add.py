@@ -1,4 +1,4 @@
-import re,sys,os,time
+20import re,sys,os,time
 import threading
 import pexpect
 
@@ -15,7 +15,7 @@ def telnet(ip,user,pwd):
                 pass
             else:
                 child.sendline(pwd)
-                index = child.expect (r'[>$~/]')
+                index = child.expect (r'[#$~/]')
 #print index
 #print child.before
                 if index == 0:
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     hosttotal=[]
     usertotal=[]
     pwdtotal=[]
-    thread_number=5
+    thread_number=20
     for line in hosts:
         host = line.strip('\n')
         hosttotal.append(host)
@@ -69,6 +69,7 @@ if __name__ == "__main__":
         userpwd(ips,usertotal,pwdtotal)
         #print ips,usertotal,pwdtotal
         del hosttotal[:thread_number]
+        time.sleep(2)
 
         
         
