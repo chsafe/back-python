@@ -15,7 +15,7 @@ def telnet(ip,user,pwd):
                 pass
             else:
                 child.sendline(pwd)
-                index = child.expect (r'[#$~/]')
+                index = child.expect (r'[>#$~/]')
 #print index
 #print child.before
                 if index == 0:
