@@ -20,8 +20,9 @@ def telnet(ip,user,pwd):
 #print index
 #print child.before
                 if index == 0:
+                    child.sendline("ifconfig")
                     child.sendline("help")
-                    if len(child.read())>30
+                    if len(child.read())>50
                         print ip + ":" + user +":" + pwd + ":" "success"
                         os.system("echo %s,%s,%s  >>aaa.txt " %(ip,user,pwd) )
                     else
