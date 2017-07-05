@@ -1,3 +1,4 @@
+
 import re,sys,os,time
 import threading
 import pexpect
@@ -19,6 +20,8 @@ def telnet(ip,user,pwd):
 #print index
 #print child.before
                 if index == 0:
+                    child.sendline("help")
+                    
                     print ip + ":" + user +":" + pwd + ":" "success"
                     os.system("echo %s,%s,%s  >>aaa.txt " %(ip,user,pwd) )
                 else:
